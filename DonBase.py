@@ -4,6 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
+"""Donbase handles all database interactions that Donna.py may need."""
+
 Base = declarative_base()
 engine = create_engine('sqlite:///Donna.db')
 Session = sessionmaker(bind=engine)
@@ -30,7 +32,7 @@ def SearchKnownWords(result_as = None, searching_for = None, ):
     return known_words
 
 class InterpretedWord(Base):
-    """Word Objects are SQLalchemy database objects worked with- and usually created within- Sentence objects."""
+    """InterpretedWords are SQLAlchemy database objects which store information about known words. They are meant to be created within a sentence object."""
     __tablename__ = 'KnownWords'
     id = Column(Integer, primary_key=True)
     name = Column(String(250))
